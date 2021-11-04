@@ -1,0 +1,14 @@
+.search-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.search-box-title {
+    color: grey;
+}
+
+.search-box-inputs {
+    display: flex;
+    flex-direction: row;
+}
