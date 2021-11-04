@@ -15,10 +15,9 @@ export default function Search() {
         if (searchText) {
             setIsAtTop(true);
             if (finesList?.length) {
-                console.log(finesList);
                 const regE = new RegExp(searchText, "i");
-                const filteredData = finesList.filter((user) => {
-                    return (regE.test(Object.values(user).join('')));
+                const filteredData = finesList.filter((fine) => {
+                    return (regE.test(Object.values(fine).join('')));
                 });
                 setResults(filteredData);
             }
