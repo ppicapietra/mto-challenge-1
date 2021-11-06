@@ -11,30 +11,26 @@ export default function FineDetail() {
     const { getFinesList, finesList } = useContext(FinesContext);
     const [ fine, setFine ] = useState({});
 
-    const fineId = params.id;
+    const fineId = Number.parseInt(params.id);
+
+    useEffect(() => {
+        getFinesList().catch(null); 
+    }, []);
+    useEffect(()=>{
+        getOneFine()
+    },[finesList]);
 
     const getOneFine = ()=>{
         //Finds the fine with the given ID and set to fine const
-        setFine(finesList.find((e)=>e.id === fineId));
-    }
-    
-
-    useEffect(() => {
-        //getFinesList().then(getOneFine).catch(null);
-         setFine( {
-            type: "business",
-            address: "zelaya 2150"
-        } ) 
-    }, []);
-
-    
-    console.log(fine);
+        setFine(finesList.find( e => (e.id===fineId)));
+        console.log(finesList);
+    }    
 
     return (
-        <div>
-            {(fine.type==="business") && <BusinessDetail fine={fine} />}
-            {(fine.type==="vehicle") && <VehicleDetail fine={fine} />}
-            {(fine.type==="general") && <GeneralDetail fine={fine} />}
-        </div>
+        <>
+            {(fine && fine.cuit) && <BusinessDetail fine={fine} />}
+            {(fine && fine.vehicleId) && <VehicleDetail fine={fine} />}
+            {/**(fine?.specificParam) && <GeneralDetail fine={fine} />*/}
+        </>
     )
 }

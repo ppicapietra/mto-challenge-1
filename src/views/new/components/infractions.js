@@ -11,7 +11,8 @@ export default function Infractions({infractions, saveInfractions}) {
         newListInfractions[key] = event.target.value;
         saveInfractions(newListInfractions);
     }
-    const addInfractionHandler = ()=> {
+    const addInfractionHandler = (e)=> {
+        e.preventDefault();
         saveInfractions([...infractions,""]);
     }
     console.log(infractions);

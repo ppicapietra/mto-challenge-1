@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
+import "./style.css";
 
-export default function SearchResultItem( {fine} ) {
-    console.log(fine);
+export default function SearchResultItem({ fine }) {
+    const fineDate = new Date(fine.created_at);
+    const fineDateFormatted = `${fineDate.getDate()}/${fineDate.getMonth()}/${fineDate.getFullYear()} - ${fineDate.getHours()}:${fineDate.getMinutes()}`;
     return (
-        <div>
-            <div className="list-group p-1">
-                <div className="list-group-item list-group-item-action p-3">
-                    <h3>{fine.dni}</h3>
-                    <p><b>Type:</b> {fine.dni}</p>
-                    <p><b>Date:</b> {fine.created_at}</p>
-                    <div className="d-flex justify-content-end">
-                        <button className="btn btn-info me-0">
-                            <Link to={`/Detail/${fine.id}`} className="text-decoration-none text-dark">
-                                See details
-                            </Link>
-                        </button>
-                    </div>
+        <>
+            <div className="searchResultItem">
+                <h3>#{fine.id}</h3>
+                <p><b>Tipo:</b> {(fine.cuit) ? "A negocios" : ((fine.vehicleId) ? "Tránsito" : "Otros")}</p>
+                <p><b>Fecha:</b> {fineDateFormatted}</p>
+                <div className="searchItemBtnDetail">
+                    <button>
+                        <Link to={`/Detail/${fine.id}`} className="SearchItemLink">
+                            See details
+                        </Link>
+                    </button>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

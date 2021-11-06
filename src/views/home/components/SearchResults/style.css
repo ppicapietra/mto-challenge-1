@@ -1,0 +1,33 @@
+.searchResultItem {
+    padding: 10px;
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-items: start;
+    border-radius: 4px;
+    background-color: rgb(219, 214, 207);
+    min-width: 400px;
+}
+
+.searchResultItem p {
+    margin: 5px;
+    padding-left: 10px;
+}
+
+.searchItemBtnDetail {
+    width: 100%;
+}
+
+.SearchItemLink {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.searchResultItem p {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+}

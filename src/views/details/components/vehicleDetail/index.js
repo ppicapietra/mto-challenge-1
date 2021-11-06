@@ -6,7 +6,7 @@ export default function VehicleDetail({ fine }) {
     return (
         <main style={{
             "display": "flex",
-            "flex-direction": "column",
+            "flexDirection": "column",
             "alignItems": "center",
             "justifyContent": "center"
         }}>
@@ -27,9 +27,9 @@ export default function VehicleDetail({ fine }) {
                     <b>Infracciones:</b>
                 </p>
                 <ul>
-                    {fine.infractions?.map((i, e) => {
+                    {fine.fine_infractions?.map((e) => {
                         return (
-                            <li key={i}>{e.description}</li>
+                            <li key={e.id}>{e.description}</li>
                         );
                     })}
                 </ul>

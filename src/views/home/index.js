@@ -16,8 +16,8 @@ export default function Search() {
     }, []);
 
     const handleSearchClick = (searchText) => {
+        setIsAtTop(true);
         if (searchText) {
-            setIsAtTop(true);
             if (finesList?.length) {
                 const regE = new RegExp(searchText, "i");
                 const filteredData = finesList.filter((fine) => {
@@ -25,6 +25,9 @@ export default function Search() {
                 });
                 setResults(filteredData);
             }
+        }
+        else {
+            setResults(finesList);
         }
     }
 

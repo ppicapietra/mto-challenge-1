@@ -5,6 +5,10 @@ import { useState } from "react";
 export default function FinesProvider({ children }) {
 
     const [ finesList,setFinesList ] = useState([]);
+
+    /**
+     * Used to save track of a fine in process
+     */
     const [ currentFine, setCurrentFine ] = useState({});
 
     const baseAPIUrl = 'http://finesapp.test/api';
@@ -20,7 +24,8 @@ export default function FinesProvider({ children }) {
 
     const uploadFineToCloud = async () => {
         try {
-            await apiCall(`${baseAPIUrl}/save`,"POST",currentFine,{"Content-Type": "application/json"});
+            console.log(currentFine);
+            await apiCall(`${baseAPIUrl}/fines`,"POST",JSON.stringify(currentFine),{"Content-Type": "application/json"});
         }
         catch(err) {
             console.log("Error on uploading local fines list to server");
@@ -28,7 +33,7 @@ export default function FinesProvider({ children }) {
     }
 
     return (
-        <FinesContext.Provider value={{ "getFinesList": getFinesList, "finesList": finesList, "uploadFineToCloud": uploadFineToCloud, "setCurrentFine": setCurrentFine }}>
+        <FinesContext.Provider value={{ getFinesList, finesList, uploadFineToCloud, currentFine, setCurrentFine }}>
             { children }
         </FinesContext.Provider>
     );

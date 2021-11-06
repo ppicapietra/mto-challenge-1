@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Infractions from "../infractions";
-import "./style.css";
+import "./../../style.css";
 
-export default function VehicleForm({ setCurrentFine, uploadFine }) {
+export default function VehicleForm({ setCurrentFine }) {
     const [ vehicleId , setVehicleId ] = useState("");
     const [ address, setAddress ] = useState("");
     const [ dni, setDni] = useState("");
     const [ observations, setObservations ] = useState("");
-    const [ infractions, saveInfractions ] = useState([]);
+    const [ infractions, saveInfractions ] = useState([""]);
 
-    const saveFine = () => {
+    useEffect(()=>{
         const fine = {
             "vehicleId": vehicleId,
             "address": address,
@@ -18,17 +18,16 @@ export default function VehicleForm({ setCurrentFine, uploadFine }) {
             "infractions": infractions
         }
         setCurrentFine(fine);
-        uploadFine();
-        //validate form inputs and save data to DB or return error message
-    }
+    },[ vehicleId, address, dni, observations, infractions ]);
+    
 
     return (
-        <div>
-            <div className="container">
+        <>
+            <section className="formNewFine">
                 <p>Creando multa para vehículo</p>
                 <form>
                     <label>Dominio vehículo <sup>(*)</sup>:
-                        <input type="text" id="vehicleId" required value={vehicleId} onChange={ ({target: { value }})=>{setVehicleId(value)} } />
+                        <input type="text" id="vehicleId" required value={vehicleId.toUpperCase()} onChange={ ({target: { value }})=>{setVehicleId(value)} } />
                     </label>
                     <label>Calle <sup>(*)</sup>:
                         <input type="text" id="address" required value={address} onChange={ ({target: { value }})=>{setAddress(value)} } />
@@ -44,9 +43,9 @@ export default function VehicleForm({ setCurrentFine, uploadFine }) {
                     <label>Observaciones:
                         <input type="text" id="observations" value={observations} onChange={ ({target: { value }})=>{setObservations(value)} } />
                     </label>
-                    <button onClick={() => saveFine()}>Guardar</button>
+                    
                 </form>
-            </div>
-        </div>
+            </section>
+        </>
     );
 }

@@ -1,7 +1,10 @@
-export default function GeneralForm( fine ) {
+import "./../../style.css";
+export default function GeneralForm(fine) {
     return (
-        <div>
-            <p>Creando multa para Otros</p>
-        </div>
+        <>
+            <section className="formNewFine">
+                <p>Creando multa para Otros</p>
+            </section>
+        </>
     );
 }
