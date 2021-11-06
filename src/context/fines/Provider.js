@@ -6,9 +6,11 @@ export default function FinesProvider({ children }) {
 
     const [ finesList,setFinesList ] = useState([]);
 
+    const baseAPIUrl = 'http://finesapp.test/api';
+
     const getFinesList = async () => {
         try {
-            const finesResult = await apiCall("https://fineswebservice.typicode.com/myfines");
+            const finesResult = await apiCall(`${baseAPIUrl}/fines`);
             setFinesList(finesResult);
         }
         catch(err) {
@@ -17,7 +19,7 @@ export default function FinesProvider({ children }) {
 
     const uploadFinesToCloud = async () => {
         try {
-            await apiCall("https://fineswebservice.com/sync","GET",finesList);
+            await apiCall("https://fineswebservice.com/sync","GET",finesList,{"Content-Type": "application/json"});
         }
         catch(err) {
             console.log("Error on uploading local fines list to server");

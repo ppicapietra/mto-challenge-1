@@ -20,11 +20,11 @@ export default function FineDetail() {
     
 
     useEffect(() => {
-        getFinesList().then(getOneFine).catch(null);
-        /* setFine( {
+        //getFinesList().then(getOneFine).catch(null);
+         setFine( {
             type: "business",
             address: "zelaya 2150"
-        } ) */
+        } ) 
     }, []);
 
     
@@ -34,7 +34,7 @@ export default function FineDetail() {
         <div>
             {(fine.type==="business") && <BusinessDetail fine={fine} />}
             {(fine.type==="vehicle") && <VehicleDetail fine={fine} />}
-            {(fine.type==="business") && <GeneralDetail fine={fine} />}
+            {(fine.type==="general") && <GeneralDetail fine={fine} />}
         </div>
     )
 }

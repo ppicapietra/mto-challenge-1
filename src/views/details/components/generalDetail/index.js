@@ -1,10 +1,21 @@
-export default function GeneralDetail( { fine } ) {
+export default function GeneralDetail({ fine }) {
     return (
-        <div>
-            <h2>Infracción general #{fine.id}</h2>
-            <p>
-                <b></b>
-            </p>
-        </div>
+        <>
+            <main style={{
+                "display": "flex",
+                "flex-direction": "column",
+                "alignItems": "center",
+                "justifyContent": "center"
+            }}>
+                <div>
+                    <header>
+                        <h2>Infracción general #{fine.id}</h2>
+                    </header>
+                    <p>
+                        <b></b>
+                    </p>
+                </div>
+            </main>
+        </>
     );
 }

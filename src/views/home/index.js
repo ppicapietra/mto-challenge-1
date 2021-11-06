@@ -11,6 +11,10 @@ export default function Search() {
 
     const { getFinesList, finesList } = useContext(FinesContext);
 
+    useEffect(() => {
+        getFinesList().catch(null);
+    }, []);
+
     const handleSearchClick = (searchText) => {
         if (searchText) {
             setIsAtTop(true);
@@ -23,10 +27,6 @@ export default function Search() {
             }
         }
     }
-
-    useEffect(() => {
-        getFinesList().catch(null);
-    }, []);
 
     return (
         <div className={`p-4 container search ${isAtTop ? "search--top" : "search--middle"}`}>
