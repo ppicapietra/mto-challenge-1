@@ -19,7 +19,7 @@ export default function FinesProvider({ children }) {
 
     const uploadFinesToCloud = async () => {
         try {
-            await apiCall("https://fineswebservice.com/sync","GET",finesList,{"Content-Type": "application/json"});
+            await apiCall(`${baseAPIUrl}/save`,"POST",finesList,{"Content-Type": "application/json"});
         }
         catch(err) {
             console.log("Error on uploading local fines list to server");
