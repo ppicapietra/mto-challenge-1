@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function FinesProvider({ children }) {
 
     const [ finesList,setFinesList ] = useState([]);
+    const [ currentFine, setCurrentFine ] = useState({});
 
     const baseAPIUrl = 'http://finesapp.test/api';
 
@@ -17,9 +18,9 @@ export default function FinesProvider({ children }) {
             setFinesList([]);
         }};
 
-    const uploadFinesToCloud = async () => {
+    const uploadFineToCloud = async () => {
         try {
-            await apiCall(`${baseAPIUrl}/save`,"POST",finesList,{"Content-Type": "application/json"});
+            await apiCall(`${baseAPIUrl}/save`,"POST",currentFine,{"Content-Type": "application/json"});
         }
         catch(err) {
             console.log("Error on uploading local fines list to server");
@@ -27,7 +28,7 @@ export default function FinesProvider({ children }) {
     }
 
     return (
-        <FinesContext.Provider value={{ getFinesList: getFinesList, finesList: finesList, uploadFinesToCloud: uploadFinesToCloud }}>
+        <FinesContext.Provider value={{ "getFinesList": getFinesList, "finesList": finesList, "uploadFineToCloud": uploadFineToCloud, "setCurrentFine": setCurrentFine }}>
             { children }
         </FinesContext.Provider>
     );

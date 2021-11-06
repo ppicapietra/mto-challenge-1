@@ -2,16 +2,24 @@ import { useState } from "react";
 import Infractions from "../infractions";
 import "./style.css";
 
-export default function VehicleForm() {
+export default function VehicleForm({ setCurrentFine, uploadFine }) {
     const [ vehicleId , setVehicleId ] = useState("");
     const [ address, setAddress ] = useState("");
     const [ dni, setDni] = useState("");
-    const [ obs, setObs ] = useState("");
+    const [ observations, setObservations ] = useState("");
     const [ infractions, saveInfractions ] = useState([]);
 
     const saveFine = () => {
-        console.log(infractions);
-        //TODO: get all the values, validate form and, if everything is ok, save data to DB
+        const fine = {
+            "vehicleId": vehicleId,
+            "address": address,
+            "dni": dni,
+            "observations": observations,
+            "infractions": infractions
+        }
+        setCurrentFine(fine);
+        uploadFine();
+        //validate form inputs and save data to DB or return error message
     }
 
     return (
@@ -34,7 +42,7 @@ export default function VehicleForm() {
                             saveInfractions={saveInfractions} />
                     </label>
                     <label>Observaciones:
-                        <input type="text" id="observations" value={obs} onChange={ ({target: { value }})=>{setObs(value)} } />
+                        <input type="text" id="observations" value={observations} onChange={ ({target: { value }})=>{setObservations(value)} } />
                     </label>
                     <button onClick={() => saveFine()}>Guardar</button>
                 </form>
