@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BusinessForm from "./components/businessForm";
 import VehicleForm from "./components/vehicleForm";
 import GeneralForm from "./components/generalForm";
@@ -13,11 +13,17 @@ export default function FineCreator() {
 
     const navigate = useNavigate();
 
-    const saveFine = (e)=>{
+    const btnSaveFineClickHandler = (e)=>{
+        //TODO: Show loading message 'til get the answer
         e.preventDefault();
-        uploadFineToCloud();
-        console.log(currentFine);
+        uploadFineToCloud().catch(null);
         navigate("/");
+    }
+
+    const btnCancelClickHandler = (e)=> {
+        e.preventDefault();
+        setCurrentFine({});
+        navigate("/")
     }
     return (
         <div className="newFineContainer">
@@ -35,8 +41,8 @@ export default function FineCreator() {
             {(fineType === "business") && <BusinessForm setCurrentFine={setCurrentFine} />}
             {(fineType === "vehicle") && <VehicleForm setCurrentFine={setCurrentFine} />}
             {(fineType === "general") && <GeneralForm setCurrentFine={setCurrentFine} />}
-            {(fineType) && (fineType!=="none") && <button onClick={ saveFine }>Guardar</button>}
-            <button style={{"marginTop":"15px"}} onClick={(e)=>{e.preventDefault();navigate("/")}}> Cancelar</button>
+            {(fineType) && (fineType!=="none") && <button onClick={ btnSaveFineClickHandler }>Guardar</button>}
+            <button style={{"marginTop":"15px"}} onClick={btnCancelClickHandler}> Cancelar</button>
         </div>
     )
 }

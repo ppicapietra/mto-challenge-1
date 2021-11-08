@@ -8,12 +8,12 @@ export default function Infractions({infractions, saveInfractions}) {
     }
     const updateInfractionHandler = ( key,event ) => {
         const newListInfractions = [...infractions];
-        newListInfractions[key] = event.target.value;
+        newListInfractions[key] = { description: event.target.value };
         saveInfractions(newListInfractions);
     }
     const addInfractionHandler = (e)=> {
         e.preventDefault();
-        saveInfractions([...infractions,""]);
+        saveInfractions([...infractions,{}]);
     }
     console.log(infractions);
     return (
@@ -22,7 +22,7 @@ export default function Infractions({infractions, saveInfractions}) {
             {infractions.map((e,i)=> {
                     return(
                 <div key={i}>
-                    <input type="text" value={e} onChange={(event)=>{updateInfractionHandler(i,event)}} style={{ "display":"inline-block" }} /><button onClick={(e)=>{removeInfractionHandler(i,e)} } style={{ "backgroundColor": "pink", "color": "red", "cursor": "pointer", "textDecoration": "none", "width": "20px", "height": "20px", "padding": "2px","border":"none","display":"inline-block","marginLeft":"2px" }}>X</button>
+                    <input type="text" value={e.description} onChange={(event)=>{updateInfractionHandler(i,event)}} style={{ "display":"inline-block" }} /><button onClick={(e)=>{removeInfractionHandler(i,e)} } style={{ "backgroundColor": "pink", "color": "red", "cursor": "pointer", "textDecoration": "none", "width": "20px", "height": "20px", "padding": "2px","border":"none","display":"inline-block","marginLeft":"2px" }}>X</button>
                 </div>
                     );
                 })}

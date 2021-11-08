@@ -1,3 +1,8 @@
+.searchResultsContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto 62px;
+}
 .searchResultItem {
     padding: 10px;
     display: flex;
@@ -7,7 +12,7 @@
     justify-items: start;
     border-radius: 4px;
     background-color: rgb(219, 214, 207);
-    min-width: 400px;
+    min-width: 285px;
 }
 
 .searchResultItem p {
@@ -17,6 +22,8 @@
 
 .searchItemBtnDetail {
     width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
 .SearchItemLink {

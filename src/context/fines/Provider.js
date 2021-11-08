@@ -24,7 +24,7 @@ export default function FinesProvider({ children }) {
 
     const uploadFineToCloud = async () => {
         try {
-            console.log(currentFine);
+            console.log(JSON.stringify(currentFine));
             await apiCall(`${baseAPIUrl}/fines`,"POST",JSON.stringify(currentFine),{"Content-Type": "application/json"});
         }
         catch(err) {
